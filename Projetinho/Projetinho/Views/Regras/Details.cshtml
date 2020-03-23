@@ -1,0 +1,53 @@
+﻿@model Projetinho.Models.Regra
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Regra</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Objetivo.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Objetivo.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+        <dd>
+            <table class="table">
+                <tr>
+                    <th>Causas</th>
+                    <th>Grade</th>
+                </tr>
+                @foreach (var item in Model.Causas)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pergunta)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RegraID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
