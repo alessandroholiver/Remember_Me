@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API_Remember</name>
+    </assembly>
+    <members>
+        <member name="M:API_Remember.Controllers.CadastroController.CadastrarUsuario(API_Remember.Models.User)">
+            <summary>
+            Método responsável pelo cadastro de novos usuários
+            </summary>
+            <param name="user"></param>
+            <response code="200">OK </response>
+        </member>
+    </members>
+</doc>
