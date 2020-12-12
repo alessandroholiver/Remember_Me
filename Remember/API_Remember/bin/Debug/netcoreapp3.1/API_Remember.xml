@@ -11,5 +11,12 @@
             <param name="user"></param>
             <response code="200">OK </response>
         </member>
+        <member name="M:API_Remember.Controllers.CadastroController.Get">
+            <summary>
+            Método responsável pelo cadastro de novos usuários
+            </summary>
+            <param name="user"></param>
+            <response code="200">OK </response>
+        </member>
     </members>
 </doc>

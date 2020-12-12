@@ -1,4 +1,5 @@
-﻿using API_Remember.Business.Interface;
+﻿using API_Remember.Business;
+using API_Remember.Business.Interface;
 using API_Remember.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,11 +18,11 @@ namespace API_Remember.Controllers
     [ApiController]
     public class CadastroController : Controller
     {
-        private ICadastroBusiness _cadastroBusiness;
-
-        public CadastroController(ICadastroBusiness cadastro)
+      
+        private readonly CadastroBusiness _cadastro;
+        public CadastroController(CadastroBusiness cadastro)
         {
-            _cadastroBusiness = cadastro;
+            _cadastro = cadastro;
         }
 
       
@@ -35,10 +36,20 @@ namespace API_Remember.Controllers
         [HttpPost, AllowAnonymous]
         public IActionResult CadastrarUsuario([FromBody] User user)
         {
-            return _cadastroBusiness.CadastrarUsuario(user);
+            return _cadastro.CadastrarUsuario(user);
         }
 
+        /// <summary>
+        /// Método responsável pelo cadastro de novos usuários
+        /// </summary>
+        /// <param name="user"></param>
+        /// <response code="200">OK </response>
 
-     
+        [HttpGet, AllowAnonymous]
+        public ActionResult<List<User>> Get() => _cadastro.Get();
+       
+
+
+
     }
 }

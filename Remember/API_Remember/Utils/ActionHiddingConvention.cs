@@ -10,7 +10,14 @@ namespace API_Remember.Utils
     {
         public void Apply(ActionModel action)
         {
-            //throw new NotImplementedException();
+            if (action.ActionName == "Get" && action.Controller.ControllerName == "WeatherForecast")
+                action.ApiExplorer.IsVisible = false;
+        }
+
+        public void Apply(ControllerModel controller)
+        {
+            //if (controller.ControllerName == "WeatherForecast")
+            //    controller.ApiExplorer.IsVisible = false;
         }
     }
 }

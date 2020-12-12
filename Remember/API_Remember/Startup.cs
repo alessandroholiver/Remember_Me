@@ -1,6 +1,7 @@
 
 using API_Remember.Business;
 using API_Remember.Business.Interface;
+using API_Remember.Models;
 using API_Remember.Utils;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
@@ -55,7 +57,12 @@ namespace API_Remember
             });
 
             //Injeção de dependencias
+            services.Configure<RememberDatabaseSettings>(
+                Configuration.GetSection(nameof(RememberDatabaseSettings)));
+            services.AddSingleton<IRememberDatabaseSettings>(sp =>
+            sp.GetRequiredService<IOptions<RememberDatabaseSettings>>().Value);
             services.AddScoped<ICadastroBusiness, CadastroBusiness>();
+            services.AddSingleton<CadastroBusiness>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
